@@ -77,7 +77,7 @@ const indexHtmlTemplate = async ({ attributes, files, publicPath, title }) => {
           }
         </style>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link href="/static/images/icon.png" rel="shortcut icon" type="image/x-icon">
+        <link href="/static/images/favicon.png" rel="shortcut icon" type="image/x-icon">
         ${links}
         ${scripts}
         <script>
