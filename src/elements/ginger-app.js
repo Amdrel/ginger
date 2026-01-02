@@ -5,9 +5,6 @@ import { LitElement, html, css } from 'lit-element';
 
 import { thisDotTheme } from '../styles/theme';
 
-const blogPostLink =
-  'https://labs.thisdot.co/blog/webgl-morph-targets-and-ginger-modernizing-for-todays-web';
-
 const styles = css`
   :host {
     display: block;
@@ -92,13 +89,6 @@ const styles = css`
     left: 10%;
     right: 10%;
     padding: 24px;
-    background-color: var(--grey800);
-  }
-
-  .ginger-header {
-    position: absolute;
-    left: 0;
-    right: 0;
     background-color: var(--grey800);
   }
 
@@ -195,19 +185,6 @@ const styles = css`
       padding: 0;
       width: 100%;
       max-width: 230px;
-    }
-
-    .td-header {
-      justify-content: center;
-    }
-
-    .td-header > div {
-      padding: 8px 8px;
-    }
-
-    .td-logo-container {
-      width: 100%;
-      text-align: center;
     }
   }
 
@@ -576,6 +553,11 @@ class GingerApp extends LitElement {
         morph: this.morphs.tongue,
       },
     };
+
+    // HACK: Enable mouse tracking by default.
+    setTimeout(() => {
+      this.handleMouseTrack();
+    }, 0);
   }
 
   /**
@@ -585,93 +567,6 @@ class GingerApp extends LitElement {
    */
   render() {
     return html`
-      <div class="ginger-header">
-        <header id="header" class="td-header">
-          <div class="td-logo-container">
-            <a
-              href="https://labs.thisdot.co/"
-              class="td-logo"
-              title="This Dot Labs"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                id="Layer_1"
-                width="152"
-                height="34"
-                data-name="Layer 1"
-                viewBox="0 0 279.93 34.62"
-              >
-                <defs>
-                  <style>
-                    .cls-1 {
-                      fill: #626d8e;
-                    }
-                    .cls-2 {
-                      fill: #f46663;
-                    }
-                    .cls-3 {
-                      fill: #9faccc;
-                    }
-                  </style>
-                </defs>
-                <title>
-                  thisdot-publication
-                </title>
-                <path
-                  d="M8.94,6.42H0V.59H24.77V6.42H15.83V34.07H8.94Z"
-                  class="cls-1"
-                />
-                <path
-                  d="M40,.59h6.91V15.5h12V.59h6.88V34.07H58.9V21.35h-12V34.07H40Z"
-                  class="cls-1"
-                />
-                <path d="M90.58.59V34.07H83.7V.59Z" class="cls-1" />
-                <path
-                  d="M106.84,25.16h7c.24,2.39,1.91,3.54,4.26,3.54S122,27.31,122,25.16s-1.34-3.4-5.89-5.26c-6.67-2.75-9-5.9-9-10.82,0-5.5,4-9.09,10.47-9.09C123.5,0,128,3.54,128,9.37h-7a3.28,3.28,0,0,0-3.59-3.44c-2.25,0-3.4,1.39-3.4,3.06,0,2,1.39,3.18,6.07,5.19,6.69,2.87,8.84,5.88,8.84,10.57,0,5.9-4.21,9.87-10.95,9.87S107.22,30.52,106.84,25.16Z"
-                  class="cls-1"
-                />
-                <path
-                  d="M162.61,34.07H151.43V.59h11.19c10.85,0,18.17,6.12,18.17,16.74S173.47,34.07,162.61,34.07Zm.05-27.64h-4.35V28.22h4.35c6.27,0,11.14-3.63,11.14-10.85S168.93,6.42,162.66,6.42Z"
-                  class="cls-1"
-                />
-                <path
-                  d="M264.11,6.42h-8.95V.59h24.77V6.42H271V34.07h-6.88Z"
-                  class="cls-1"
-                />
-                <circle cx="218.03" cy="17.03" r="10.41" class="cls-2" />
-                <polygon
-                  points="234.1 0.29 225.53 0.29 238.38 17.03 225.53 33.76 234.1 33.76 246.96 17.03 234.1 0.29"
-                  class="cls-3"
-                />
-                <polygon
-                  points="201.96 0.29 210.53 0.29 197.67 17.03 210.53 33.76 201.96 33.76 189.11 17.03 201.96 0.29"
-                  class="cls-3"
-                />
-              </svg>
-            </a>
-          </div>
-          <div>
-            <a
-              id="hide-header-btn"
-              class="td-button td-button-outline"
-              href="#"
-              @click="${this.handleHideHeader}"
-              >Hide This Header ❌</a
-            >
-          </div>
-          <div>
-            <a
-              href="${blogPostLink}"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="td-button td-button-outline"
-              title="Learn how we built this"
-              >Learn More &raquo;</a
-            >
-          </div>
-        </header>
-      </div>
-
       <div id="renderer"></div>
 
       <div class="panel">
@@ -740,7 +635,7 @@ class GingerApp extends LitElement {
               class="buttoncolor-OFF"
               @click="${this.handleMouseTrack}"
             >
-              Follow OFF
+              Follow ON
             </button>
           </div>
         </div>
@@ -911,15 +806,6 @@ class GingerApp extends LitElement {
     download.download = 'ginger-' + timestamp + '.jpg';
     download.click();
     download.remove();
-  }
-
-  /**
-   * Removes the site header when the hide link is clicked.
-   * @param {Event} event
-   */
-  handleHideHeader(event) {
-    this.shadowRoot.getElementById('header').remove();
-    this.camera.position.y = 4;
   }
 
   /**

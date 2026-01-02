@@ -10,7 +10,7 @@ export const thisDotTheme = css`
     --red700: #e25855;
     --red500: #f46663;
     --grey900: #061328;
-    --grey800: #0a1930;
+    --grey800: #2d3525;
     --grey700: #122541;
     --grey600: #182d4c;
     --grey500: #3a4669;
@@ -66,8 +66,12 @@ export const thisDotTheme = css`
     white-space: nowrap;
     padding: 14px 48px;
     box-sizing: border-box;
-    -webkit-transition: color 0.25s ease, background-color 0.25s ease;
-    transition: color 0.25s ease, background-color 0.25s ease;
+    -webkit-transition:
+      color 0.25s ease,
+      background-color 0.25s ease;
+    transition:
+      color 0.25s ease,
+      background-color 0.25s ease;
   }
 
   .td-button-outline {
