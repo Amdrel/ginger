@@ -4,6 +4,9 @@ import prettierPlugin from 'eslint-plugin-prettier';
 import babelParser from '@babel/eslint-parser';
 
 export default [
+  {
+    ignores: ['node_modules/', 'dist/'],
+  },
   js.configs.recommended,
   {
     files: ['**/*.js', '**/*.mjs'],
