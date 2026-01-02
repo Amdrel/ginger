@@ -1,22 +1,19 @@
-# Ginger Progressive Web App
+# Ginger
 
-A progressive web app examples of WebGL morph targets.
+A progressive web app example of WebGL morph targets using three.js.
 
 ## Prerequisites
 
-Things you're going to need:
+You'll just need a modern version of node and npm to run this project.
 
-1. npm / yarn
-
-## Setup and run
+## Running Ginger
 
 ```
 ➜ git clone git@github.com:thisdot/ginger.git
 ➜ cd ginger
-➜ yarn
-➜ ./whatshouldthisbe
+➜ npm install
 ```
 
-## More information
+## Additional Information
 
-See blog post: [Some future blog post name that's yet to be determined](https://www.example.com/)
+Read the blog post that I wrote documenting how this application was modernized: [WebGL Morph Targets and Ginger: Modernizing for Today's Web](https://www.thisdot.co/blog/webgl-morph-targets-and-ginger-modernizing-for-todays-web)
